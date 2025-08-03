@@ -1,0 +1,264 @@
+MySQL Shell 8.0.43
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \SQL
+Unknown command: '\SQL'
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 89
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > mysql -u root -p -e "CREATE DATABASE Practical2;"
+                               -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql -u root -p -e "CREATE DATABASE Practical2;"' at line 1
+ MySQL  localhost:3306 ssl  SQL > CREATE DATABASE PRACTICAL2;
+Query OK, 1 row affected (0.0231 sec)
+ MySQL  localhost:3306 ssl  SQL > SHOW DATABASES;
++-------------------------+
+| Database                |
++-------------------------+
+| collageeventmanangersys |
+| information_schema      |
+| mysql                   |
+| performance_schema      |
+| practical2              |
+| sys                     |
++-------------------------+
+6 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  SQL > USE PRACTICAL2
+Default schema set to `PRACTICAL2`.
+Fetching global names, object names from `practical2` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE STUDENT(Stud_id ))                                             CREATE TABLE STUDENT(Stud_id )
+                                           -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,)            CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,N)           CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NA)          CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAM)         CREATE TCREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARCREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME )                       CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME )                       CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAMEV )                      CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAMEVA )                     CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAMEV )                      CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME )                       CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME  )                      CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME V )                     CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VA )                    CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VAR )                   CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VARC )                  CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VARCH )                 CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VARCHA )            CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VARCHAR )AR )
+                                           -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE STUDENTS (stud_id INT AUTO_INCREMENT PRIMARY KEY ,NAME VARCHAR(200) NOT NULL , Marks INT NOT NULL );
+Query OK, 0 rows affected (0.0501 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE EMPLOYEE(Emp_id I)                                             CREATE TABLE EMPLOYEE(Emp_id IN)                                            CREACREATE TABLE EMPLOYEE(Emp_id INT ;)                                     CREATE TABLE EMPLOYEE(Emp_id INT )
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+                                           -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE EMPLOYEE (Emp_id INT AUTO_INCREMENT PRIMARY KEY );
+Query OK, 0 rows affected (0.0380 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE EMPLOYEE ADD COLUMN Name VARCHAR(100) NOT NULL; ADD COLUMN Address VARCHAR(100) NOT NULL; ADD COLUMN Salary DECIMAL(20,2) NOT NULL; Dateofjoining DATE NOT NULL; Department VARCHAR(100) NOT NULL;
+Query OK, 0 rows affected (0.0710 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD COLUMN Address VARCHAR(100) NOT NULL' at line 1
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD COLUMN Salary DECIMAL(20,2) NOT NULL' at line 1
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Dateofjoining DATE NOT NULL' at line 1
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Department VARCHAR(100) NOT NULL' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM EMPLOYEE;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| Emp_id | int          | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(100) | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+2 rows in set (0.0036 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE EMPLOYEE ADD (Address VARCHAR(100) NOT NULL; Salary DECIMAL(20,2) NOT NULL, Dateofjoining DATE NOT NULL, Department VARCHAR(100) NOT NULL);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salary DECIMAL(20,2) NOT NULL, Dateofjoining DATE NOT NULL, Department VARCHAR(1' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE EMPLOYEE ADD (Address VARCHAR(100) NOT NULL, Salary DECIMAL(20,2) NOT NULL, Dateofjoining DATE NOT NULL, Department VARCHAR(100) NOT NULL);
+Query OK, 0 rows affected (0.0505 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE EMPLOYEE MODIFY COLUMN NOT NULL;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOT NULL' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMN FROM EMPLOYEE;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN FROM EMPLOYEE' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM EMPLOYEE;
++---------------+---------------+------+-----+---------+----------------+
+| Field         | Type          | Null | Key | Default | Extra          |
++---------------+---------------+------+-----+---------+----------------+
+| Emp_id        | int           | NO   | PRI | NULL    | auto_increment |
+| Name          | varchar(100)  | NO   |     | NULL    |                |
+| Address       | varchar(100)  | NO   |     | NULL    |                |
+| Salary        | decimal(20,2) | NO   |     | NULL    |                |
+| Dateofjoining | date          | NO   |     | NULL    |                |
+| Department    | varchar(100)  | NO   |     | NULL    |                |
++---------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.0030 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE STUDENTS MODIFY Stud_id PRIMARY KEY;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM STUDENTS;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| stud_id | int          | NO   | PRI | NULL    | auto_increment |
+| NAME    | varchar(200) | NO   |     | NULL    |                |
+| Marks   | int          | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.0044 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE VIEW JoiningInfo AS SELECT Emp_id , Name , Dateofjoining FROM EMPLOYEE;                       CREATE VIEW JoiningInfo AS SELECT Emp_id , Name , Dateofjoining FROM EMPLOYEE;
+Query OK, 0 rows affected (0.0144 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM JoiningInfo;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| Emp_id        | int          | NO   |     | 0       |       |
+| Name          | varchar(100) | NO   |     | NULL    |       |
+| Dateofjoining | date         | NO   |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+3 rows in set (0.0040 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE INDEX index_id ON EMPLOYEE (Emp_id);
+Query OK, 0 rows affected (0.0324 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE INDEX index_id ON STUDENTS (stud_id);
+Query OK, 0 rows affected (0.0275 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE INDEX index_id ON WEATHER (city_id);
+ERROR: 1146 (42S02): Table 'practical2.weather' doesn't exist
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE TABLE WEATHER (City_id INT PRIMARY KEY AUTO_INCREMENT , city_name VARCHAR(100) NOT NULL , Mintemp DECIMAL(5,2) NOT NULL , maxtemp DECIMAL(5,2));
+Query OK, 0 rows affected (0.0344 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE INDEX index_id ON WEATHER(city_id);
+Query OK, 0 rows affected (0.0409 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM index_id;
+ERROR: 1146 (42S02): Table 'practical2.index_id' doesn't exist
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE VIEW MARKSINFO AS SELECT Stud_id , marks FROM STUDENTS;
+Query OK, 0 rows affected (0.0357 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMS FROM STUDENTS;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMS FROM STUDENTS' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM STUDENTS;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| stud_id | int          | NO   | PRI | NULL    | auto_increment |
+| NAME    | varchar(200) | NO   |     | NULL    |                |
+| Marks   | int          | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.0030 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM MARKSINFO;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| Stud_id | int  | NO   |     | 0       |       |
+| marks   | int  | NO   |     | NULL    |       |
++---------+------+------+-----+---------+-------+
+2 rows in set (0.0034 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE WEATHER
+                                           -> ;
+Query OK, 0 rows affected (0.0087 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > RENAME TABLE WEATHER TO WEATHERDATA;
+Query OK, 0 rows affected (0.0257 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM WEATHERDATA;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| City_id   | int          | NO   | PRI | NULL    | auto_increment |
+| city_name | varchar(100) | NO   |     | NULL    |                |
+| Mintemp   | decimal(5,2) | NO   |     | NULL    |                |
+| maxtemp   | decimal(5,2) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > DROP CITY_NAME FROM WEATHERDATA;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CITY_NAME FROM WEATHERDATA' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > DROP city_name FROM WEATHERDATA;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'city_name FROM WEATHERDATA' at line 1
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE WEATHERDATA
+                                           -> DROP COLUMN city_name;
+Query OK, 0 rows affected (0.0719 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE STUDENTS
+                                           -> ADD(GRADE VARCHAR(10));
+Query OK, 0 rows affected (0.0894 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM STUDENTS;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| stud_id | int          | NO   | PRI | NULL    | auto_increment |
+| NAME    | varchar(200) | NO   |     | NULL    |                |
+| Marks   | int          | NO   |     | NULL    |                |
+| GRADE   | varchar(10)  | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+4 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS
+                                           -> VALUES ('HARSHAL',100,'DISTINCTION',)
+                                           -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 2
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS
+                                           -> VALUES ('HARSHAL',100,'DISTINCTION')
+                                           -> ,('ADITYA',100,'DISTINCTION'),
+                                           -> ('MALHAR',80,'PASS');
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS
+                                           ->                                            -> VALUES ('HARSHAL',100,'DISTINCTION')
+                                           ->                                            -> ,('ADITYA',100,'DISTINCTION'),
+                                           ->                                            -> ('MALHAR',80,'PASS');
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> VALUES ('HARSHAL',100,'DISTINCTION')
+                                        ' at line 2
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS (NAME , Marks ,GRADE) VALUES
+                                           -> ('HARSHAL',100,'DISTINCTION')
+                                           -> ,('ADITYA',100,'DISTINCTION'),
+                                           -> ('MALHAR',90,'PASS');
+ERROR: 1406 (22001): Data too long for column 'GRADE' at row 1
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE STUDENTS
+                                           -> MODIFY GRADE INT NOT NULL;
+Query OK, 0 rows affected (0.0955 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS (NAME, Marks, GRADE)
+                                           -> VALUES
+                                           -> ('HARSHAL', 100, 'DISTINCTION'),
+                                           -> ('ADITYA', 100, 'DISTINCTION'),
+                                           -> ('MALHAR', 90, 'PASS');
+ERROR: 1366 (HY000): Incorrect integer value: 'DISTINCTION' for column 'GRADE' at row 1
+ MySQL  localhost:3306 ssl  practical2  SQL > ALTER TABLE STUDENTS
+                                           -> MODIFY GRADE VARCHAR(100) NOT NULL;
+Query OK, 0 rows affected (0.1026 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > INSERT INTO STUDENTS (NAME, Marks, GRADE)
+                                           -> VALUES
+                                           -> ('HARSHAL', 100, 'DISTINCTION'),
+                                           -> ('ADITYA', 100, 'DISTINCTION'),
+                                           -> ('MALHAR', 90, 'PASS');
+Query OK, 3 rows affected (0.0081 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2  SQL > CREATE VIEW DISTINCTIONSTUDENTS AS SELECT * FROM STUDENTS WHERE GRADE ='DISTINCTION';
+Query OK, 0 rows affected (0.0159 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SHOW COLUMNS FROM DISTINCTIONSTUDENTS;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| stud_id | int          | NO   |     | 0       |       |
+| NAME    | varchar(200) | NO   |     | NULL    |       |
+| Marks   | int          | NO   |     | NULL    |       |
+| GRADE   | varchar(100) | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.0034 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SELECT * FROM DISTINCTIONSTUDENTS;
++---------+---------+-------+-------------+
+| stud_id | NAME    | Marks | GRADE       |
++---------+---------+-------+-------------+
+|       1 | HARSHAL |   100 | DISTINCTION |
+|       2 | ADITYA  |   100 | DISTINCTION |
++---------+---------+-------+-------------+
+2 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL > SELECT * FROM STUDENTS;
++---------+---------+-------+-------------+
+| stud_id | NAME    | Marks | GRADE       |
++---------+---------+-------+-------------+
+|       1 | HARSHAL |   100 | DISTINCTION |
+|       2 | ADITYA  |   100 | DISTINCTION |
+|       3 | MALHAR  |    90 | PASS        |
++---------+---------+-------+-------------+
+3 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  practical2  SQL >
