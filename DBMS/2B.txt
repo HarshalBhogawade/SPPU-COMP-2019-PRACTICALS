@@ -1,0 +1,653 @@
+MySQL Shell 8.0.43
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect root@localhost:3306
+Creating a session to 'root@localhost:3306'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 91
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > CREATE DATABASE PRACTICAL2B;
+Query OK, 1 row affected (0.0444 sec)
+ MySQL  localhost:3306 ssl  SQL > CREATE TABLE EMPLOYEE
+                               -> ( EMPLOYEEID INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+                               -> FIRSTNAME VARCHAR(100) NOT NULL ,
+                               -> LASTNAME VARCHAR(100) NOT NULL ,
+                               -> SALARY DECIMAL(20,2) NOT NULL ,
+                               -> JOININGDATE DATE , DEPARTMENT VARCHAR(100) NOT NULL);
+ERROR: 1046 (3D000): No database selected
+ MySQL  localhost:3306 ssl  SQL > USE PRACTICAL2B;
+Default schema set to `PRACTICAL2B`.
+Fetching global names, object names from `practical2b` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  practical2b  SQL > CREATE TABLE EMPLOYEE
+                                            -> (EMPLOYEEID INT AUTO_INCREMENT PRIMARY KEY,
+                                            -> FIRSTNAME VARCHAR(100) NOT NULL ,
+                                            -> LASTNAME VARCHAR(100) NOT NULL ,
+                                            -> SALARY DECIMAL(20,2) NOT NULL ,
+                                            -> JOININGDATE DATE , DEPARTMENT VARCHAR(200) NOT NULL);
+Query OK, 0 rows affected (0.0499 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SHOW COLUMNS FROM EMPLOYEE;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| EMPLOYEEID  | int           | NO   | PRI | NULL    | auto_increment |
+| FIRSTNAME   | varchar(100)  | NO   |     | NULL    |                |
+| LASTNAME    | varchar(100)  | NO   |     | NULL    |                |
+| SALARY      | decimal(20,2) | NO   |     | NULL    |                |
+| JOININGDATE | date          | YES  |     | NULL    |                |
+| DEPARTMENT  | varchar(200)  | NO   |     | NULL    |                |
++-------------+---------------+------+-----+---('HARSHAL','BHOGAWADE',2000000.00,2027-9-30);
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1',2000000.00,2027-9-30);
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME , SALARY , JOININGDATE , DEPARTMENT) VALUES
+                                            -> ('HARSHAL','BHOGAWADE',2000000.00 , 2027-9-30 ,'SOFTWARE DEVELOPER');
+ERROR: 1292 (22007): Incorrect date value: '1988' for column 'JOININGDATE' at row 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME , SALARY M JOININGDATE , DEPARTMENT)
+                                            -> VALUES
+                                            -> ('HARSHAL','BHOGAWADE',2000000,.00,'2027-09-30' , 'SOFTWARE DEVELOPER');
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'M JOININGDATE , DEPARTMENT)
+VALUES
+('HARSHAL','BHOGAWADE',2000000,.00,'2027-09-3' at line 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES
+                                            -> ('HARSHAL','BHOGAWADE',2000000.00,'2027-09-30','SDE');
+Query OK, 1 row affected (0.0189 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES ('ARYAN','SINGH',1000000.00,'2027-08-30','DESIGNER');
+Query OK, 1 row affected (0.0058 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES ('VAIBHAV','SINGH',1500000.00,'2027-07-30','ARCHITECT');
+Query OK, 1 row affected (0.0200 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES ('ADITYA','SHINDE',1800000.00,'2027-09-30','SDE');
+Query OK, 1 row affected (0.0196 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES ('OMKAR','BHEKE',1000000.00,'2027-10-30','TESTING');
+Query OK, 1 row affected (0.0197 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
++------------+-----------+-----------+------------+-------------+------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME  | SALARY     | JOININGDATE | DEPARTMENT |
++------------+-----------+-----------+------------+-------------+------------+
+|          1 | HARSHAL   | BHOGAWADE | 2000000.00 | 2027-09-30  | SDE        |
+|          2 | ARYAN     | SINGH     | 1000000.00 | 2027-08-30  | DESIGNER   |
+|          3 | VAIBHAV   | SINGH     | 1500000.00 | 2027-07-30  | ARCHITECT  |
+|          4 | ADITYA    | SHINDE    | 1800000.00 | 2027-09-30  | SDE        |
+|          5 | OMKAR     | BHEKE     | 1000000.00 | 2027-10-30  | TESTING    |
++------------+-----------+-----------+------------+-------------+------------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME , LASTNAME, SALARY,JOININGDATE,DEPARTMENT) VALUES ('OMKAR','BHEKE',1000000.00,'2027-10-30','TESTING');
+Query OK, 1 row affected (0.0117 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > ALTER TABLE EMPLOYEE
+                                            -> TRUCATE EMPLOYEE;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRUCATE EMPLOYEE' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > TRUNCATE TABLE EMPLOYEE;
+Query OK, 0 rows affected (0.0521 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
+Empty set (0.0032 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SHOW COLUMNS FROM EMPLOYEE;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| EMPLOYEEID  | int           | NO   | PRI | NULL    | auto_increment |
+| FIRSTNAME   | varchar(100)  | NO   |     | NULL    |                |
+| LASTNAME    | varchar(100)  | NO   |     | NULL    |                |
+| SALARY      | decimal(20,2) | NO   |     | NULL    |                |
+| JOININGDATE | date          | YES  |     | NULL    |                |
+| DEPARTMENT  | varchar(200)  | NO   |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME, LASTNAME, SALARY, JOININGDATE, DEPARTMENT) VALUES
+                                            -> ('SNEHA', 'PATIL', 1800000.00, '2026-08-15', 'DATA ANALYST'),
+                                            -> ('RAHUL', 'SHARMA', 2500000.00, '2025-07-01', 'DEVOPS ENGINEER'),
+                                            -> ('PRIYA', 'DESHMUKH', 2200000.00, '2025-10-20', 'QA ENGINEER'),
+                                            -> ('OM', 'JADHAV', 1750000.00, '2026-11-10', 'FRONTEND DEVELOPER'),
+                                            -> ('TANVI', 'KULKARNI', 1900000.00, '2025-12-05', 'UI/UX DESIGNER'),
+                                            -> ('ROHAN', 'MORE', 3000000.00, '2028-01-18', 'PROJECT MANAGER'),
+                                            -> ('SHEETAL', 'RAUT', 2100000.00, '2024-04-23', 'BACKEND DEVELOPER'),
+                                            -> ('ADITYA', 'NIKAM', 2800000.00, '2023-06-30', 'SYSTEM ARCHITECT'),
+                                            -> ('KOMAL', 'PAWAR', 1600000.00, '2027-03-12', 'TEST ENGINEER'),
+                                            -> ('VIKAS', 'PAWAR', 1950000.00, '2026-02-09', 'SECURITY SPECIALIST'),
+                                            -> ('NIDHI', 'SALUNKHE', 2300000.00, '2025-01-11', 'PRODUCT DESIGNER'),
+                                            -> ('SAURABH', 'KAMBLE', 2600000.00, '2026-07-19', 'ML ENGINEER'),
+                                            -> ('MEGHA', 'LOKARE', 1850000.00, '2024-10-25', 'HR MANAGER'),
+                                            -> ('ANIKET', 'LONKAR', 1700000.00, '2023-09-05', 'DATABASE ADMIN'),
+                                            -> ('NEHA', 'GHULE', 2000000.00, '2024-06-15', 'TECHNICAL WRITER');
+Query OK, 15 rows affected (0.0187 sec)
+
+Records: 15  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
++------------+-----------+----------+------------+-------------+---------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT          |
++------------+-----------+----------+------------+-------------+---------------------+
+|          1 | SNEHA     | PATIL    | 1800000.00 | 2026-08-15  | DATA ANALYST        |
+|          2 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER     |
+|          3 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER         |
+|          4 | OM        | JADHAV   | 1750000.00 | 2026-11-10  | FRONTEND DEVELOPER  |
+|          5 | TANVI     | KULKARNI | 1900000.00 | 2025-12-05  | UI/UX DESIGNER      |
+|          6 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER     |
+|          7 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER   |
+|          8 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT    |
+|          9 | KOMAL     | PAWAR    | 1600000.00 | 2027-03-12  | TEST ENGINEER       |
+|         10 | VIKAS     | PAWAR    | 1950000.00 | 2026-02-09  | SECURITY SPECIALIST |
+|         11 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER    |
+|         12 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER         |
+|         13 | MEGHA     | LOKARE   | 1850000.00 | 2024-10-25  | HR MANAGER          |
+|         14 | ANIKET    | LONKAR   | 1700000.00 | 2023-09-05  | DATABASE ADMIN      |
+|         15 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER    |
++------------+-----------+----------+------------+-------------+---------------------+
+15 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT FIRSTNAME,LASTNAME FROM EMPLOYEE;
++-----------+----------+
+| FIRSTNAME | LASTNAME |
++-----------+----------+
+| SNEHA     | PATIL    |
+| RAHUL     | SHARMA   |
+| PRIYA     | DESHMUKH |
+| OM        | JADHAV   |
+| TANVI     | KULKARNI |
+| ROHAN     | MORE     |
+| SHEETAL   | RAUT     |
+| ADITYA    | NIKAM    |
+| KOMAL     | PAWAR    |
+| VIKAS     | PAWAR    |
+| NIDHI     | SALUNKHE |
+| SAURABH   | KAMBLE   |
+| MEGHA     | LOKARE   |
+| ANIKET    | LONKAR   |
+| NEHA      | GHULE    |
++-----------+----------+
+15 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT UNIQUE(DEPARTMENT) FROM EMPLOYEE;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE(DEPARTMENT) FROM EMPLOYEE' at line 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DISTINCT DEPARTMENT FROM EMPLOYEE;
++---------------------+
+| DEPARTMENT          |
++---------------------+
+| DATA ANALYST        |
+| DEVOPS ENGINEER     |
+| QA ENGINEER         |
+| FRONTEND DEVELOPER  |
+| UI/UX DESIGNER      |
+| PROJECT MANAGER     |
+| BACKEND DEVELOPER   |
+| SYSTEM ARCHITECT    |
+| TEST ENGINEER       |
+| SECURITY SPECIALIST |
+| PRODUCT DESIGNER    |
+| ML ENGINEER         |
+| HR MANAGER          |
+| DATABASE ADMIN      |
+| TECHNICAL WRITER    |
++---------------------+
+15 rows in set (0.0151 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT FIRSTNAME, YEAR(JOININGDATE),MONTH(JOININGDATE),DAY(JOININGDATE) , DAY(JOININGDATE) FROM EMPLOYEE;
++-----------+-------------------+--------------------+------------------+------------------+
+| FIRSTNAME | YEAR(JOININGDATE) | MONTH(JOININGDATE) | DAY(JOININGDATE) | DAY(JOININGDATE) |
++-----------+-------------------+--------------------+------------------+------------------+
+| SNEHA     |              2026 |                  8 |               15 |               15 |
+| RAHUL     |              2025 |                  7 |                1 |                1 |
+| PRIYA     |              2025 |                 10 |               20 |               20 |
+| OM        |              2026 |                 11 |               10 |               10 |
+| TANVI     |              2025 |                 12 |                5 |                5 |
+| ROHAN     |              2028 |                  1 |               18 |               18 |
+| SHEETAL   |              2024 |                  4 |               23 |               23 |
+| ADITYA    |              2023 |                  6 |               30 |               30 |
+| KOMAL     |              2027 |                  3 |               12 |               12 |
+| VIKAS     |              2026 |                  2 |                9 |                9 |
+| NIDHI     |              2025 |                  1 |               11 |               11 |
+| SAURABH   |              2026 |                  7 |               19 |               19 |
+| MEGHA     |              2024 |                 10 |               25 |               25 |
+| ANIKET    |              2023 |                  9 |                5 |                5 |
+| NEHA      |              2024 |                  6 |               15 |               15 |
++-----------+-------------------+--------------------+------------------+------------------+
+15 rows in set (0.0159 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE
+                                            -> WHERE ORDER BY SALARY;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY SALARY' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE
+                                            -> DESC ORDER BY SALARY;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESC ORDER BY SALARY' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE
+                                            -> ORDER BY SALARY;
++------------+-----------+----------+------------+-------------+---------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT          |
++------------+-----------+----------+------------+-------------+---------------------+
+|          9 | KOMAL     | PAWAR    | 1600000.00 | 2027-03-12  | TEST ENGINEER       |
+|         14 | ANIKET    | LONKAR   | 1700000.00 | 2023-09-05  | DATABASE ADMIN      |
+|          4 | OM        | JADHAV   | 1750000.00 | 2026-11-10  | FRONTEND DEVELOPER  |
+|          1 | SNEHA     | PATIL    | 1800000.00 | 2026-08-15  | DATA ANALYST        |
+|         13 | MEGHA     | LOKARE   | 1850000.00 | 2024-10-25  | HR MANAGER          |
+|          5 | TANVI     | KULKARNI | 1900000.00 | 2025-12-05  | UI/UX DESIGNER      |
+|         10 | VIKAS     | PAWAR    | 1950000.00 | 2026-02-09  | SECURITY SPECIALIST |
+|         15 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER    |
+|          7 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER   |
+|          3 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER         |
+|         11 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER    |
+|          2 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER     |
+|         12 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER         |
+|          8 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT    |
+|          6 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER     |
++------------+-----------+----------+------------+-------------+---------------------+
+15 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE
+                                            -> ORDER BY SALARY DESC;
++------------+-----------+----------+------------+-------------+---------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT          |
++------------+-----------+----------+------------+-------------+---------------------+
+|          6 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER     |
+|          8 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT    |
+|         12 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER         |
+|          2 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER     |
+|         11 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER    |
+|          3 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER         |
+|          7 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER   |
+|         15 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER    |
+|         10 | VIKAS     | PAWAR    | 1950000.00 | 2026-02-09  | SECURITY SPECIALIST |
+|          5 | TANVI     | KULKARNI | 1900000.00 | 2025-12-05  | UI/UX DESIGNER      |
+|         13 | MEGHA     | LOKARE   | 1850000.00 | 2024-10-25  | HR MANAGER          |
+|          1 | SNEHA     | PATIL    | 1800000.00 | 2026-08-15  | DATA ANALYST        |
+|          4 | OM        | JADHAV   | 1750000.00 | 2026-11-10  | FRONTEND DEVELOPER  |
+|         14 | ANIKET    | LONKAR   | 1700000.00 | 2023-09-05  | DATABASE ADMIN      |
+|          9 | KOMAL     | PAWAR    | 1600000.00 | 2027-03-12  | TEST ENGINEER       |
++------------+-----------+----------+------------+-------------+---------------------+
+15 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT FIRSTNAME FROM EMPLOYEE
+                                            -> WHERE FIRSTNAME LIKE '%A';
++-----------+
+| FIRSTNAME |
++-----------+
+| SNEHA     |
+| PRIYA     |
+| ADITYA    |
+| MEGHA     |
+| NEHA      |
++-----------+
+5 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT FIRSTNAME FROM EMPLOYEE
+                                            -> WHERE FIRSTNAME LIKE 'A%';
++-----------+
+| FIRSTNAME |
++-----------+
+| ADITYA    |
+| ANIKET    |
++-----------+
+2 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDATE EMPLOYEE
+                                            -> SET SALARY = SALARY + 50000
+                                            -> WHERE SALARY < 2000000.00;
+Query OK, 7 rows affected (0.0214 sec)
+
+Rows matched: 7  Changed: 7  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
++------------+-----------+----------+------------+-------------+---------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT          |
++------------+-----------+----------+------------+-------------+---------------------+
+|          1 | SNEHA     | PATIL    | 1850000.00 | 2026-08-15  | DATA ANALYST        |
+|          2 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER     |
+|          3 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER         |
+|          4 | OM        | JADHAV   | 1800000.00 | 2026-11-10  | FRONTEND DEVELOPER  |
+|          5 | TANVI     | KULKARNI | 1950000.00 | 2025-12-05  | UI/UX DESIGNER      |
+|          6 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER     |
+|          7 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER   |
+|          8 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT    |
+|          9 | KOMAL     | PAWAR    | 1650000.00 | 2027-03-12  | TEST ENGINEER       |
+|         10 | VIKAS     | PAWAR    | 2000000.00 | 2026-02-09  | SECURITY SPECIALIST |
+|         11 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER    |
+|         12 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER         |
+|         13 | MEGHA     | LOKARE   | 1900000.00 | 2024-10-25  | HR MANAGER          |
+|         14 | ANIKET    | LONKAR   | 1750000.00 | 2023-09-05  | DATABASE ADMIN      |
+|         15 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER    |
++------------+-----------+----------+------------+-------------+---------------------+
+15 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > DELETE FROM EMPLOYEE
+                                            -> ;
+Query OK, 15 rows affected (0.0215 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
+Empty set (0.0011 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME, LASTNAME, SALARY, JOININGDATE, DEPARTMENT) VALUES
+                                            -> ('SNEHA', 'PATIL', 1800000.00, '2026-08-15', 'DATA ANALYST'),
+                                            -> ('RAHUL', 'SHARMA', 2500000.00, '2025-07-01', 'DEVOPS ENGINEER'),
+                                            -> ('PRIYA', 'DESHMUKH', 2200000.00, '2025-10-20', 'QA ENGINEER'),
+                                            -> ('OM', 'JADHAV', 1750000.00, '2026-11-10', 'FRONTEND DEVELOPER'),
+                                            -> ('TANVI', 'KULKARNI', 1900000.00, '2025-12-05', 'UI/UX DESIGNER'),
+                                            -> ('ROHAN', 'MORE', 3000000.00, '2028-01-18', 'PROJECT MANAGER'),
+                                            -> ('SHEETAL', 'RAUT', 2100000.00, '2024-04-23', 'BACKEND DEVELOPER'),
+                                            -> ('ADITYA', 'NIKAM', 2800000.00, '2023-06-30', 'SYSTEM ARCHITECT'),
+                                            -> ('KOMAL', 'PAWAR', 1600000.00, '2027-03-12', 'TEST ENGINEER'),
+                                            -> ('VIKAS', 'PAWAR', 1950000.00, '2026-02-09', 'SECURITY SPECIALIST'),
+                                            -> ('NIDHI', 'SALUNKHE', 2300000.00, '2025-01-11', 'PRODUCT DESIGNER'),
+                                            -> ('SAURABH', 'KAMBLE', 2600000.00, '2026-07-19', 'ML ENGINEER'),
+                                            -> ('MEGHA', 'LOKARE', 1850000.00, '2024-10-25', 'HR MANAGER'),
+                                            -> ('ANIKET', 'LONKAR', 1700000.00, '2023-09-05', 'DATABASE ADMIN'),
+                                            -> ('NEHA', 'GHULE', 2000000.00, '2024-06-15', 'TECHNICAL WRITER');
+Query OK, 15 rows affected (0.0202 sec)
+
+Records: 15  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
++------------+-----------+----------+------------+-------------+---------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT          |
++------------+-----------+----------+------------+-------------+---------------------+
+|         16 | SNEHA     | PATIL    | 1800000.00 | 2026-08-15  | DATA ANALYST        |
+|         17 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER     |
+|         18 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER         |
+|         19 | OM        | JADHAV   | 1750000.00 | 2026-11-10  | FRONTEND DEVELOPER  |
+|         20 | TANVI     | KULKARNI | 1900000.00 | 2025-12-05  | UI/UX DESIGNER      |
+|         21 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER     |
+|         22 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER   |
+|         23 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT    |
+|         24 | KOMAL     | PAWAR    | 1600000.00 | 2027-03-12  | TEST ENGINEER       |
+|         25 | VIKAS     | PAWAR    | 1950000.00 | 2026-02-09  | SECURITY SPECIALIST |
+|         26 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER    |
+|         27 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER         |
+|         28 | MEGHA     | LOKARE   | 1850000.00 | 2024-10-25  | HR MANAGER          |
+|         29 | ANIKET    | LONKAR   | 1700000.00 | 2023-09-05  | DATABASE ADMIN      |
+|         30 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER    |
++------------+-----------+----------+------------+-------------+---------------------+
+15 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > DELETE DEPARTMENT FROM EMPLOYEE
+                                            -> WHERE EMPLOYEEID = 25;
+ERROR: 1109 (42S02): Unknown table 'department' in MULTI DELETE
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDARE DEPARTMENT
+                                            -> SET DEPARTMENT = NULL
+                                            -> WHERE EMPLOYEEID = 25;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDARE DEPARTMENT
+SET DEPARTMENT = NULL
+WHERE EMPLOYEEID = 25' at line 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDATE EMPLOYEE
+                                            -> SET DEPATEMENT = NULL
+                                            -> WHERE EMPLOYEEID = 25;
+ERROR: 1054 (42S22): Unknown column 'DEPATEMENT' in 'field list'
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDATE EMPLOYEE
+                                            -> SET DEPARTMENT = NULL
+                                            -> WHERE EMPLOYEEID = 25;
+ERROR: 1048 (23000): Column 'DEPARTMENT' cannot be null
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDATE EMPLOYEE
+                                            -> SET DEPARTMENT = NULL;
+ERROR: 1048 (23000): Column 'DEPARTMENT' cannot be null
+ MySQL  localhost:3306 ssl  practical2b  SQL > ALTER TABLE EMPLOYEE
+                                            -> MODIFY DEPARTMENT NULL;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > ALTER TABLE EMPLOYEE
+                                            -> MODIFY DEPARTMENT VARCHAR(100) NULL;
+Query OK, 15 rows affected (0.0854 sec)
+
+Records: 15  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > ALTER TABLE EMPLOYEE
+                                            -> MODIFY DEPARTMENT NULL;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > UPDATE EMPLOYEE
+                                            -> SET DEPARTMENT = NULL
+                                            -> WHERE EMPLOYEEID = 25;
+Query OK, 1 row affected (0.0201 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT EMPLOYEEID FROM EMPLOYEE;
++------------+
+| EMPLOYEEID |
++------------+
+|         16 |
+|         17 |
+|         18 |
+|         19 |
+|         20 |
+|         21 |
+|         22 |
+|         23 |
+|         24 |
+|         25 |
+|         26 |
+|         27 |
+|         28 |
+|         29 |
+|         30 |
++------------+
+15 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMPLOYEE;
++------------+-----------+----------+------------+-------------+--------------------+
+| EMPLOYEEID | FIRSTNAME | LASTNAME | SALARY     | JOININGDATE | DEPARTMENT         |
++------------+-----------+----------+------------+-------------+--------------------+
+|         16 | SNEHA     | PATIL    | 1800000.00 | 2026-08-15  | DATA ANALYST       |
+|         17 | RAHUL     | SHARMA   | 2500000.00 | 2025-07-01  | DEVOPS ENGINEER    |
+|         18 | PRIYA     | DESHMUKH | 2200000.00 | 2025-10-20  | QA ENGINEER        |
+|         19 | OM        | JADHAV   | 1750000.00 | 2026-11-10  | FRONTEND DEVELOPER |
+|         20 | TANVI     | KULKARNI | 1900000.00 | 2025-12-05  | UI/UX DESIGNER     |
+|         21 | ROHAN     | MORE     | 3000000.00 | 2028-01-18  | PROJECT MANAGER    |
+|         22 | SHEETAL   | RAUT     | 2100000.00 | 2024-04-23  | BACKEND DEVELOPER  |
+|         23 | ADITYA    | NIKAM    | 2800000.00 | 2023-06-30  | SYSTEM ARCHITECT   |
+|         24 | KOMAL     | PAWAR    | 1600000.00 | 2027-03-12  | TEST ENGINEER      |
+|         25 | VIKAS     | PAWAR    | 1950000.00 | 2026-02-09  | NULL               |
+|         26 | NIDHI     | SALUNKHE | 2300000.00 | 2025-01-11  | PRODUCT DESIGNER   |
+|         27 | SAURABH   | KAMBLE   | 2600000.00 | 2026-07-19  | ML ENGINEER        |
+|         28 | MEGHA     | LOKARE   | 1850000.00 | 2024-10-25  | HR MANAGER         |
+|         29 | ANIKET    | LONKAR   | 1700000.00 | 2023-09-05  | DATABASE ADMIN     |
+|         30 | NEHA      | GHULE    | 2000000.00 | 2024-06-15  | TECHNICAL WRITER   |
++------------+-----------+----------+------------+-------------+--------------------+
+15 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DEPARTMENT , SALARY FROM EMPLOYEE
+                                            -> GROUP BY DEPARTMENT WHERE MIN(SALARY);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE MIN(SALARY)' at line 2
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DEPARTMENT , SALARY FROM EMPLOYEE
+                                            -> WHERE MIN(SALARY)
+                                            -> GROUP BY DEPARTMENT;
+ERROR: 1111 (HY000): Invalid use of group function
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DEPARTMENT , MIN(SALARY) FROM EMPLOYEE
+                                            -> GROUP BY DEPARTMENT;
++--------------------+-------------+
+| DEPARTMENT         | MIN(SALARY) |
++--------------------+-------------+
+| DATA ANALYST       |  1800000.00 |
+| DEVOPS ENGINEER    |  2500000.00 |
+| QA ENGINEER        |  2200000.00 |
+| FRONTEND DEVELOPER |  1750000.00 |
+| UI/UX DESIGNER     |  1900000.00 |
+| PROJECT MANAGER    |  3000000.00 |
+| BACKEND DEVELOPER  |  2100000.00 |
+| SYSTEM ARCHITECT   |  2800000.00 |
+| TEST ENGINEER      |  1600000.00 |
+| NULL               |  1950000.00 |
+| PRODUCT DESIGNER   |  2300000.00 |
+| ML ENGINEER        |  2600000.00 |
+| HR MANAGER         |  1850000.00 |
+| DATABASE ADMIN     |  1700000.00 |
+| TECHNICAL WRITER   |  2000000.00 |
++--------------------+-------------+
+15 rows in set (0.0151 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMPLOYEE (FIRSTNAME, LASTNAME, SALARY, JOININGDATE, DEPARTMENT) VALUES
+                                            -> ('YASH', 'DANDEKAR', 1850000.00, '2025-03-01', 'SOFTWARE ENGINEER'),
+                                            -> ('DIVYA', 'KHANNA', 2050000.00, '2026-05-12', 'DATA SCIENTIST'),
+                                            -> ('NIKITA', 'BARVE', 1750000.00, '2024-07-08', 'SCRUM MASTER'),
+                                            -> ('AKASH', 'RAJE', 2600000.00, '2023-08-20', 'FULL STACK DEVELOPER'),
+                                            -> ('RUTUJA', 'KARANJE', 1900000.00, '2026-01-18', 'PRODUCT MANAGER'),
+                                            -> ('MANOJ', 'KADAM', 2400000.00, '2027-11-11', 'BLOCKCHAIN ENGINEER'),
+                                            -> ('SHIVANI', 'WADEKAR', 2250000.00, '2023-10-30', 'AI ENGINEER'),
+                                            -> ('RITESH', 'SHINDE', 2100000.00, '2025-04-14', 'NETWORK ENGINEER'),
+                                            -> ('KIRTI', 'ZENDE', 1800000.00, '2028-02-25', 'CLOUD CONSULTANT'),
+                                            -> ('PRANAV', 'TALEKAR', 1950000.00, '2026-06-03', 'TECH SUPPORT');
+Query OK, 10 rows affected (0.0063 sec)
+
+Records: 10  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DEPARTMENT , MIN(SALARY) FROM EMPLOYEE GROUP BY DEPARTMENT;
++----------------------+-------------+
+| DEPARTMENT           | MIN(SALARY) |
++----------------------+-------------+
+| DATA ANALYST         |  1800000.00 |
+| DEVOPS ENGINEER      |  2500000.00 |
+| QA ENGINEER          |  2200000.00 |
+| FRONTEND DEVELOPER   |  1750000.00 |
+| UI/UX DESIGNER       |  1900000.00 |
+| PROJECT MANAGER      |  3000000.00 |
+| BACKEND DEVELOPER    |  2100000.00 |
+| SYSTEM ARCHITECT     |  2800000.00 |
+| TEST ENGINEER        |  1600000.00 |
+| NULL                 |  1950000.00 |
+| PRODUCT DESIGNER     |  2300000.00 |
+| ML ENGINEER          |  2600000.00 |
+| HR MANAGER           |  1850000.00 |
+| DATABASE ADMIN       |  1700000.00 |
+| TECHNICAL WRITER     |  2000000.00 |
+| SOFTWARE ENGINEER    |  1850000.00 |
+| DATA SCIENTIST       |  2050000.00 |
+| SCRUM MASTER         |  1750000.00 |
+| FULL STACK DEVELOPER |  2600000.00 |
+| PRODUCT MANAGER      |  1900000.00 |
+| BLOCKCHAIN ENGINEER  |  2400000.00 |
+| AI ENGINEER          |  2250000.00 |
+| NETWORK ENGINEER     |  2100000.00 |
+| CLOUD CONSULTANT     |  1800000.00 |
+| TECH SUPPORT         |  1950000.00 |
++----------------------+-------------+
+25 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > 9. Find department wise minimum salary.
+                                            -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '9. Find department wise minimum salary.' at line 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DEPARTMENT , AVG(SALARY) FROM EMPLOYEE
+                                            -> GROUP BY DEPARTMENT
+                                            -> ORDER BY AVG(SALARY);
++----------------------+----------------+
+| DEPARTMENT           | AVG(SALARY)    |
++----------------------+----------------+
+| TEST ENGINEER        | 1600000.000000 |
+| DATABASE ADMIN       | 1700000.000000 |
+| FRONTEND DEVELOPER   | 1750000.000000 |
+| SCRUM MASTER         | 1750000.000000 |
+| DATA ANALYST         | 1800000.000000 |
+| CLOUD CONSULTANT     | 1800000.000000 |
+| HR MANAGER           | 1850000.000000 |
+| SOFTWARE ENGINEER    | 1850000.000000 |
+| UI/UX DESIGNER       | 1900000.000000 |
+| PRODUCT MANAGER      | 1900000.000000 |
+| NULL                 | 1950000.000000 |
+| TECH SUPPORT         | 1950000.000000 |
+| TECHNICAL WRITER     | 2000000.000000 |
+| DATA SCIENTIST       | 2050000.000000 |
+| BACKEND DEVELOPER    | 2100000.000000 |
+| NETWORK ENGINEER     | 2100000.000000 |
+| QA ENGINEER          | 2200000.000000 |
+| AI ENGINEER          | 2250000.000000 |
+| PRODUCT DESIGNER     | 2300000.000000 |
+| BLOCKCHAIN ENGINEER  | 2400000.000000 |
+| DEVOPS ENGINEER      | 2500000.000000 |
+| ML ENGINEER          | 2600000.000000 |
+| FULL STACK DEVELOPER | 2600000.000000 |
+| SYSTEM ARCHITECT     | 2800000.000000 |
+| PROJECT MANAGER      | 3000000.000000 |
++----------------------+----------------+
+25 rows in set (0.0163 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > CREATE TABLE EMP (
+                                            -> EMPID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+                                            -> EMPNAME VARCHAR(100) NOT NULL,
+                                            -> CITY VARCHAR(100) NOT NULL ,
+                                            -> COMPANYNAME VARCHAR(100) NOT NULL ,
+                                            -> SALARY DECIMAL(20,2) NOT NULL);
+Query OK, 0 rows affected (0.0442 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMP (EMPNAME , CITY , COMPANYNAME , SALARY) VALUES
+                                            -> ('HARSHAL','PUNE','IBM',2000000.00);
+Query OK, 1 row affected (0.0222 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > INSERT INTO EMP (EMPNAME, CITY, COMPANYNAME, SALARY) VALUES
+
+                                            -> ('SNEHA', 'MUMBAI', 'TCS', 1800000.00),
+                                            -> ('RAHUL', 'DELHI', 'INFOSYS', 2100000.00),
+                                            -> ('PRIYA', 'BANGALORE', 'ACCENTURE', 1950000.00),
+                                            -> ('OM', 'PUNE', 'WIPRO', 1700000.00),
+                                            -> ('TANVI', 'HYDERABAD', 'COGNIZANT', 1850000.00),
+                                            -> ('ROHAN', 'CHENNAI', 'IBM', 2200000.00),
+                                            -> ('SHEETAL', 'NAGPUR', 'CAPGEMINI', 1650000.00),
+                                            -> ('ADITYA', 'INDORE', 'GOOGLE', 3500000.00),
+                                            -> ('KOMAL', 'MYSORE', 'MICROSOFT', 3300000.00),
+                                            -> ('VIKAS', 'PUNE', 'AMAZON', 3000000.00),
+                                            -> ('NIDHI', 'NOIDA', 'DELOITTE', 2400000.00),
+                                            -> ('SAURABH', 'MUMBAI', 'TCS', 1750000.00),
+                                            -> ('MEGHA', 'AHMEDABAD', 'INFOSYS', 1900000.00),
+                                            -> ('ANIKET', 'PUNE', 'ACCENTURE', 2100000.00),
+                                            -> ('NEHA', 'BANGALORE', 'WIPRO', 2000000.00);
+Query OK, 15 rows affected (0.0067 sec)
+
+Records: 15  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT * FROM EMP
+                                            -> WHERE COMPANYNAME = 'IBM' AND CITY='PUNE';
++-------+---------+------+-------------+------------+
+| EMPID | EMPNAME | CITY | COMPANYNAME | SALARY     |
++-------+---------+------+-------------+------------+
+|     1 | HARSHAL | PUNE | IBM         | 2000000.00 |
++-------+---------+------+-------------+------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT EMPNAME , CITY FROM EMP
+                                            -> WHERE COMPANYNAME='INFOSYS' OR SALARY >1950000.00;
++---------+-----------+
+| EMPNAME | CITY      |
++---------+-----------+
+| HARSHAL | PUNE      |
+| RAHUL   | DELHI     |
+| ROHAN   | CHENNAI   |
+|
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->                                                                    version for the right syntax to use near '' at line 2LEC
+                                            ->
+                                            ->
+                                            -> WHERE (SELECT AVG(SALARY) FROM EMP WHERE COMPANYNAME='IBM')
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            ->
+                                            -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT COMPANYNAME FROM EMP
+                                            -> WHERE (SELECT AVG(SALARY) FROM EMP WHERE COMPANYNAME='IBM') < (SELECT SALARY FROM EMP WHERE COMPANYNAME != 'IBM');
+ERROR: 1242 (21000): Subquery returns more than 1 row
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DISTINCT COMPANYNAME
+                                            -> WHERE SALARY > (SELECT AVG(SALARY) FROM EMP WHERE COMPANYNAME = 'IBM');
+ERROR: 1054 (42S22): Unknown column 'COMPANYNAME' in 'field list'
+ MySQL  localhost:3306 ssl  practical2b  SQL > SELECT DISTINCT COMPANYNAME FROM EMP
+                                            -> WHERE SALARY > (SELECT AVG(SALARY) FROM EMP WHERE COMPANYNAME = 'IBM');
++-------------+
+| COMPANYNAME |
++-------------+
+| IBM         |
+| GOOGLE      |
+| MICROSOFT   |
+| AMAZON      |
+| DELOITTE    |
++-------------+
+5 rows in set (0.0015 sec)
